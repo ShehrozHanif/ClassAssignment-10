@@ -240,7 +240,7 @@ Purpose: Remove a book from the collection.
 
 ## Second Part
 
-📂 books/page.tsx
+# 📂 books/page.tsx
 
 This file contains the frontend UI for displaying and interacting with the books. It communicates with the backend API using HTTP methods like GET, POST, PUT, and DELETE.
 
@@ -261,9 +261,9 @@ It interacts with an API to manage the books and maintains the state in the brow
 
 ---
 
-Key Features
+## Key Features
 
-1. State Variables
+### 1. State Variables
 
 State variables are used to manage data and user inputs:
 
@@ -275,11 +275,10 @@ editId: Identifies the book being edited. If null, it means no book is being edi
 
 error: Displays validation errors if user inputs are incomplete.
 
-
-
 ---
 
-2. useEffect to Fetch Data
+
+### 2. useEffect to Fetch Data
 
 When the component loads, the useEffect hook fetches the list of books from the API:
 
@@ -299,12 +298,10 @@ The server responds with a list of books in JSON format.
 
 setBooks(data) updates the state with the list of books.
 
-
-
-
 ---
 
-3. Validation of Inputs
+
+### 3. Validation of Inputs
 
 Before adding or updating a book, the app checks that all fields are filled:
 
@@ -319,14 +316,14 @@ const validateInputs = (): boolean => {
 
 Purpose: Ensures the user cannot add or update a book with incomplete data.
 
-How it works:
+### How it works:
 
 If any field is empty, an error message is shown.
 
 Otherwise, the error message is cleared.
 
 
-4. Add a New Book
+### 4. Add a New Book
 
 When the user clicks Add Book, the app sends the new book to the server:
 
@@ -359,7 +356,7 @@ When the user clicks Add Book, the app sends the new book to the server:
   };
 
 
-Steps:
+#### Steps:
 
 1. Validate inputs.
 
@@ -373,7 +370,8 @@ Steps:
 4. Clear the input fields.
 
 
-5. Edit an Existing Book
+
+### 5. Edit an Existing Book
 
 When editing, the app updates the existing book in the server and state:
 
@@ -401,7 +399,7 @@ When editing, the app updates the existing book in the server and state:
   };
 
 
-Steps:
+#### Steps:
 
 1. Validate inputs.
 
@@ -416,7 +414,7 @@ Steps:
 
 
 
-6. Delete a Book
+### 6. Delete a Book
 
 When the user clicks Delete, the app removes the book:
 
@@ -428,16 +426,15 @@ fetch("/api/books", {
   setBooks(books.filter((book) => book.id !== id)); // Remove book from the list
 });
 
-Steps:
+#### Steps:
 
 1. Send a DELETE request with the book’s id.
-
 
 2. Remove the book from the books state.
 
 
 
-7. User Interface
+### 7. User Interface
 
 The UI includes:
 
@@ -448,18 +445,16 @@ Error Message: Displays validation errors.
 Book List: Displays books with options to edit, delete, or add to cart.
 
 
-
 ---
 
-Flow Example
+## Flow Example
 
-1. A user visits the page.
+### 1. A user visits the page.
 
 The app fetches and displays the current list of books.
 
 
-
-2. The user adds a new book:
+### 2. The user adds a new book:
 
 Fills in the title, author, and price.
 
@@ -468,8 +463,7 @@ Clicks "Add Book."
 The book appears in the list.
 
 
-
-3. The user edits a book:
+### 3. The user edits a book:
 
 Clicks "Edit."
 
@@ -478,13 +472,11 @@ Updates the details and clicks "Update Book."
 The book's details are updated in the list.
 
 
-
-4. The user deletes a book:
+### 4. The user deletes a book:
 
 Clicks "Delete."
 
 The book is removed from the list.
-
 
 
 
@@ -494,13 +486,13 @@ This code is a complete CRUD (Create, Read, Update, Delete) implementation for m
 
 
 
-Summary:
-How It All Works Together
+# Summary:
+## How It All Works Together
 
-1. The frontend (books/page.tsx) interacts with the backend API (route.ts) to manage books.
+### 1. The frontend (books/page.tsx) interacts with the backend API (route.ts) to manage books.
 
 
-2. HTTP methods:
+### 2. HTTP methods:
 
 GET: Fetch all books.
 
@@ -512,20 +504,20 @@ DELETE: Remove a book.
 
 
 
-3. The frontend shows real-time updates using React states.
+### 3. The frontend shows real-time updates using React states.
 
 
 
 
 
-Further Information:
+# Further Information:
 
 In your code, you're using the standard Response object provided by the web API instead of NextResponse (specific to Next.js). Let’s explore the differences and why you might prefer one over the other:
 
 
 ---
 
-1. What is NextResponse?
+## 1. What is NextResponse?
 
 NextResponse is a utility class provided by Next.js to handle HTTP responses in Next.js applications.
 
@@ -538,11 +530,9 @@ Better integration with Edge Functions.
 Helper methods for setting cookies, headers, and more.
 
 
-
-
 ---
 
-2. What is Response?
+## 2. What is Response?
 
 Response is a native browser/web API object that provides basic response handling.
 
@@ -550,11 +540,9 @@ It's not tied to Next.js and works in any JavaScript or TypeScript environment.
 
 While it's sufficient for most cases (e.g., returning JSON or HTML), it lacks the advanced features of NextResponse.
 
-
-
 ---
 
-3. Why use Response instead of NextResponse in your code?
+## 3. Why use Response instead of NextResponse in your code?
 
 Simplicity: If you're just sending simple responses (like JSON data or plain text), Response works perfectly fine and doesn't require any Next.js-specific features.
 
@@ -562,15 +550,13 @@ Portability: Using Response makes your API handlers more portable. If you decide
 
 Unnecessary Features: Your GET, POST, PUT, and DELETE handlers don't need the advanced capabilities provided by NextResponse. They're simple CRUD operations where Response is enough.
 
-
-
 ---
 
-When Should You Use NextResponse?
+## When Should You Use NextResponse?
 
 You should consider using NextResponse in scenarios where its advanced features are beneficial. For example:
 
-1. Redirecting Users:
+### 1. Redirecting Users:
 
 import { NextResponse } from "next/server";
 
@@ -579,7 +565,7 @@ export async function GET() {
 }
 
 
-2. Rewriting URLs:
+### 2. Rewriting URLs:
 
 import { NextResponse } from "next/server";
 
@@ -588,7 +574,7 @@ export async function GET() {
 }
 
 
-3. Setting Cookies:
+### 3. Setting Cookies:
 
 import { NextResponse } from "next/server";
 
@@ -598,9 +584,9 @@ export async function GET() {
   return response;
 }
 
-Key Differences and Explanation:
+## Key Differences and Explanation:
 
-1. NextResponse.json:
+### 1. NextResponse.json:
 
 A built-in method of NextResponse to send JSON data.
 
@@ -610,28 +596,23 @@ It ensures the response headers (like Content-Type: application/json) are automa
 
 
 
-2. Automatic Headers:
+### 2. Automatic Headers:
 
 With NextResponse.json, you don’t need to set headers or stringify the JSON manually.
 
 
 
-3. Status Code:
+### 3. Status Code:
 
 The status is passed as an option in the second argument of NextResponse.json.
 
 
-
+---
 
 
 ---
 
-
-
-
----
-
-Summary
+## Summary
 
 You’re using Response because it is:
 
